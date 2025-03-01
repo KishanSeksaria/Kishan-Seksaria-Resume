@@ -5,6 +5,20 @@
 
 \documentclass[letterpaper,11pt]{article}
 
+% Conditional logic to generate two versions of the resume with different phone numbers
+\newif\ifaltphone
+
+% Check if \altphone is defined by the Makefile
+\ifdefined\altphone
+  \ifnum\pdfstrcmp{\altphone}{true}=0
+    \altphonetrue
+  \else
+    \altphonefalse
+  \fi
+\else
+  \altphonefalse % Default fallback
+\fi
+
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
 \usepackage{titlesec}
@@ -25,7 +39,7 @@
 \input{glyphtounicode}
 
 
-%----------FONT OPTIONS----------
+%----------FONT OPTIONS---------
 % sans-serif
 % \usepackage[sfdefault]{FiraSans}
 % \usepackage[sfdefault]{roboto}
@@ -125,7 +139,11 @@
 \begin{center}
   {\Huge \scshape Kishan Seksaria} \\ \vspace{5pt}
   % 1359 1/2 W Adams Blvd, Los Angeles, CA 90007 \\ \vspace{1pt}
-  \small{\faPhone\ +1 (213) 284-5282 ~ \href{mailto:kishanseksaria@gmail.com}{\raisebox{-0.1\height}\faEnvelope\ {kishanseksaria@gmail.com}} ~ \href{https://www.linkedin.com/in/kishan-seksaria/}{\raisebox{-0.1\height}\faLinkedin\ {Kishan Seksaria}} ~ \href{https://github.com/KishanSeksaria}{\faGithub\ {KishanSeksaria}}}
+  \small{\ifaltphone
+    \faIcon{mobile-alt} +91 98836 34750 % Your alternative phone
+  \else
+    \faIcon{mobile-alt} +1 (213) 284-5282 % Your original phone
+  \fi ~ \href{mailto:kishanseksaria@gmail.com}{\raisebox{-0.1\height}\faEnvelope\ {kishanseksaria@gmail.com}} ~ \href{https://www.linkedin.com/in/kishan-seksaria/}{\raisebox{-0.1\height}\faLinkedin\ {Kishan Seksaria}} ~ \href{https://github.com/KishanSeksaria}{\faGithub\ {KishanSeksaria}}}
   \vspace{-8pt}
 \end{center}
 
